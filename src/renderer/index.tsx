@@ -1,8 +1,13 @@
 import { createRoot } from 'react-dom/client';
 import App from './App';
-import { AUTH_SERVICE } from '../services/auth';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/zh-cn';
 
-AUTH_SERVICE.pat = localStorage.getItem('pat');
+window.api.updatePat(localStorage.getItem('pat').slice(1, -1));
+
+dayjs.extend(relativeTime);
+dayjs.locale('zh-cn');
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);

@@ -3,6 +3,8 @@ import HomePage from './pages/HomePage';
 import 'reset-css';
 import LoginPage from './pages/LoginPage';
 import { useLocalStorage } from '@uidotdev/usehooks';
+import zhCN from 'antd/locale/zh_CN';
+import { ConfigProvider } from 'antd';
 
 const routerForLogOut = createBrowserRouter([
   {
@@ -26,8 +28,10 @@ export default function App() {
   const [statePAT] = useLocalStorage('pat');
 
   return (
-    <RouterProvider
-      router={statePAT ? routerForLogIn : routerForLogOut}
-    ></RouterProvider>
+    <ConfigProvider locale={zhCN}>
+      <RouterProvider
+        router={statePAT ? routerForLogIn : routerForLogOut}
+      ></RouterProvider>
+    </ConfigProvider>
   );
 }

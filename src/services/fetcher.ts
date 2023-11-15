@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const fetcher = axios.create({
   baseURL: 'https://www.v2ex.com/api/v2/',
-  timeout: 10000,
+  timeout: 30000,
 });
 
 fetcher.interceptors.response.use(

@@ -72,12 +72,9 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.handle(
-  'services',
-  async (event, api: keyof typeof services, params) => {
-    return await services[api](params);
-  }
-);
+ipcMain.handle('services', (event, api: keyof typeof services, params) => {
+  return services[api](params);
+});
 
 ipcMain.on('pat', (event, pat) => {
   AUTH_SERVICE.pat = pat;
