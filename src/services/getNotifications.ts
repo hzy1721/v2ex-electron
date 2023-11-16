@@ -13,7 +13,7 @@ export interface NotificationItem {
   for_member_id: number;
   text: string;
   payload: string;
-  payload_rendererd: string;
+  payload_rendered: string;
   created: number;
   member: {
     username: string;

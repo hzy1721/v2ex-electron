@@ -5,14 +5,14 @@ import { errorPrompt } from '../../utils';
 import { AUTH_SERVICE } from '../../../services/auth';
 
 export default function LoginPage(): ReactElement {
-  const [statePAT, setStatePAT] = useLocalStorage<string>('pat');
+  const [statePat, setStatePat] = useLocalStorage<string>('pat');
   const [stateLoginLoading, setStateLoginLoading] = useState(false);
 
   const handleSubmitLogin = async ({ pat }: { pat: string }) => {
     setStateLoginLoading(true);
     try {
       await window.services.testPat({ pat });
-      setStatePAT(pat);
+      setStatePat(pat);
       AUTH_SERVICE.pat = pat;
       message.success('登录成功');
     } catch (error) {

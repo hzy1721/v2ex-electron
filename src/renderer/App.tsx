@@ -25,12 +25,12 @@ const routerForLogIn = createBrowserRouter([
 ]);
 
 export default function App() {
-  const [statePAT] = useLocalStorage('pat');
+  const [statePat] = useLocalStorage('pat');
 
   return (
     <ConfigProvider locale={zhCN}>
       <RouterProvider
-        router={statePAT ? routerForLogIn : routerForLogOut}
+        router={statePat ? routerForLogIn : routerForLogOut}
       ></RouterProvider>
     </ConfigProvider>
   );
