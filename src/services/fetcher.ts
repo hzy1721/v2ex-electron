@@ -14,7 +14,7 @@ fetcher.interceptors.response.use(
     return message;
   },
   function (error) {
-    return Promise.reject(error);
+    return Promise.reject(error.response.data.message);
   }
 );
 

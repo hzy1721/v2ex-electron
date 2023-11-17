@@ -2,7 +2,6 @@ import { useLocalStorage } from '@uidotdev/usehooks';
 import { Button, Card, Flex, Form, Input, message } from 'antd';
 import { ReactElement, useState } from 'react';
 import { errorPrompt } from '../../utils';
-import { AUTH_SERVICE } from '../../../services/auth';
 
 export default function LoginPage(): ReactElement {
   const [statePat, setStatePat] = useLocalStorage<string>('pat');
@@ -12,8 +11,8 @@ export default function LoginPage(): ReactElement {
     setStateLoginLoading(true);
     try {
       await window.services.testPat({ pat });
+      window.api.updatePat(pat);
       setStatePat(pat);
-      AUTH_SERVICE.pat = pat;
       message.success('登录成功');
     } catch (error) {
       errorPrompt(error);

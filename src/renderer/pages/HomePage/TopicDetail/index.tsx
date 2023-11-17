@@ -70,6 +70,17 @@ export default function TopicDetail({
     setStateLoading(false);
   };
 
+  const replyListPagination = (
+    <Pagination
+      pageSize={100}
+      total={replyNum}
+      current={statePage}
+      onChange={setStatePage}
+      style={{ margin: 8 }}
+      size="small"
+    />
+  );
+
   useEffect(() => {
     fetchTopicInfo();
   }, [topic]);
@@ -102,15 +113,9 @@ export default function TopicDetail({
           {dayjs().format('YYYY-MM-DD HH:mm:ss Z')}
         </div>
         <Divider style={{ margin: 0 }} />
-        {replyNum > 0 && (
+        {stateReplies.length > 0 && (
           <>
-            <Pagination
-              pageSize={100}
-              total={replyNum}
-              current={statePage}
-              onChange={setStatePage}
-              style={{ margin: 12 }}
-            />
+            {replyListPagination}
             <Divider style={{ margin: 0 }} />
           </>
         )}
@@ -140,17 +145,10 @@ export default function TopicDetail({
           }}
           loading={stateLoading}
         />
-
-        {replyNum > 0 && (
+        {stateReplies.length > 0 && (
           <>
             <Divider style={{ margin: 0 }} />
-            <Pagination
-              pageSize={100}
-              total={replyNum}
-              current={statePage}
-              onChange={setStatePage}
-              style={{ margin: 8 }}
-            />
+            {replyListPagination}
           </>
         )}
       </Card>
