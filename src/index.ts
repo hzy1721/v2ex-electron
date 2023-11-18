@@ -26,11 +26,6 @@ const createWindow = (): void => {
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
-    shell.openExternal(url);
-    return { action: 'deny' };
-  });
-
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 };
@@ -53,6 +48,21 @@ app.on('ready', () => {
   );
 
   createWindow();
+});
+
+app.on('web-contents-created', (event, contents) => {
+  contents.on('will-navigate', (event, navigationUrl) => {
+    const parsedUrl = new URL(navigationUrl);
+    if (parsedUrl.origin !== 'http://localhost:3000') {
+      event.preventDefault();
+    }
+  });
+  contents.setWindowOpenHandler(({ url }) => {
+    setImmediate(() => {
+      shell.openExternal(url);
+    });
+    return { action: 'deny' };
+  });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
