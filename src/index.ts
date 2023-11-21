@@ -47,16 +47,21 @@ app.on('ready', () => {
     }
   );
 
+  ipcMain.handle(
+    'services',
+    (event, api: keyof typeof services, params) => {
+      return services[api](params);
+    }
+  );
+
+  ipcMain.on('pat', (event, pat) => {
+    AUTH_SERVICE.pat = pat;
+  });
+
   createWindow();
 });
 
 app.on('web-contents-created', (event, contents) => {
-  contents.on('will-navigate', (event, navigationUrl) => {
-    const parsedUrl = new URL(navigationUrl);
-    if (parsedUrl.origin !== 'http://localhost:3000') {
-      event.preventDefault();
-    }
-  });
   contents.setWindowOpenHandler(({ url }) => {
     setImmediate(() => {
       shell.openExternal(url);
@@ -80,12 +85,4 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
-});
-
-ipcMain.handle('services', (event, api: keyof typeof services, params) => {
-  return services[api](params);
-});
-
-ipcMain.on('pat', (event, pat) => {
-  AUTH_SERVICE.pat = pat;
 });

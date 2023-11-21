@@ -78,6 +78,7 @@ export default function TopicDetail({
       onChange={setStatePage}
       style={{ margin: 8 }}
       size="small"
+      showSizeChanger={false}
     />
   );
 

@@ -7,14 +7,14 @@ const fetcher = axios.create({
 
 fetcher.interceptors.response.use(
   response => {
-    const { success, message, result } = response.data;
+    const { success, message, result } = response?.data ?? {};
     if (success) {
       return result;
     }
     return message;
   },
   function (error) {
-    return Promise.reject(error.response.data.message);
+    return Promise.reject(error.response?.data.message);
   }
 );
 

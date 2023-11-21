@@ -6,32 +6,19 @@ import { useLocalStorage } from '@uidotdev/usehooks';
 import zhCN from 'antd/locale/zh_CN';
 import { ConfigProvider } from 'antd';
 
-const routerForLogOut = createBrowserRouter([
-  {
-    path: '*',
-    element: <LoginPage />,
-  },
-]);
-
-const routerForLogIn = createBrowserRouter([
-  {
-    path: '/main_window',
-    element: <HomePage />,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-]);
-
 export default function App() {
   const [statePat] = useLocalStorage('pat');
 
+  const router = createBrowserRouter([
+    {
+      path: '*',
+      element: statePat ? <HomePage /> : <LoginPage />,
+    },
+  ]);
+
   return (
     <ConfigProvider locale={zhCN}>
-      <RouterProvider
-        router={statePat ? routerForLogIn : routerForLogOut}
-      ></RouterProvider>
+      <RouterProvider router={router}></RouterProvider>
     </ConfigProvider>
   );
 }

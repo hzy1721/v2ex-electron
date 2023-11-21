@@ -92,7 +92,7 @@ export default function UserProfile(): ReactElement {
   };
 
   const handleLogout = () => {
-    setStatePat('');
+    setStatePat(undefined);
     window.api.updatePat('');
     messageApi.success('退出登录成功');
   };
