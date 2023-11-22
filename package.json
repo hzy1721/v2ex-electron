@@ -20,6 +20,7 @@
   "devDependencies": {
     "@electron-forge/cli": "^6.4.2",
     "@electron-forge/maker-dmg": "^7.1.0",
+    "@electron-forge/maker-zip": "^7.1.0",
     "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
     "@electron-forge/plugin-webpack": "^6.4.2",
     "@electron-forge/publisher-bitbucket": "^7.1.0",
