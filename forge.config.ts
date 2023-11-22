@@ -52,6 +52,17 @@ const config: ForgeConfig = {
           owner: 'hzy1721',
           name: 'v2ex-electron',
         },
+        replaceExistingFiles: true,
+      },
+    },
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'hzy1721',
+          name: 'v2ex-electron',
+        },
+        force: true,
       },
     },
   ],

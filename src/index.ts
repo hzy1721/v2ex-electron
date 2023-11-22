@@ -1,4 +1,11 @@
-import { app, BrowserWindow, shell, session, ipcMain } from 'electron';
+import {
+  app,
+  BrowserWindow,
+  shell,
+  session,
+  ipcMain,
+  Menu,
+} from 'electron';
 import services from './services';
 import { AUTH_SERVICE } from './services/auth';
 
@@ -13,7 +20,18 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const createWindow = (): void => {
+function removeToggleDevToolsMenuItem(): void {
+  const appMenu = Menu.getApplicationMenu();
+  const viewMenu = appMenu.items.find(
+    item => item.label === 'View'
+  ).submenu;
+  const toggleDevToolsItem = viewMenu.items.find(
+    item => item.label === 'Toggle Developer Tools'
+  );
+  toggleDevToolsItem.visible = false;
+}
+
+function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     height: 600,
@@ -25,10 +43,7 @@ const createWindow = (): void => {
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-};
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -39,9 +54,7 @@ app.on('ready', () => {
       callback({
         responseHeaders: {
           ...details.responseHeaders,
-          'Content-Security-Policy': [
-            "connect-src 'self' https://www.v2ex.com/api/v2/",
-          ],
+          'Content-Security-Policy': ["img-src 'self' https:"],
         },
       });
     }
@@ -57,6 +70,8 @@ app.on('ready', () => {
   ipcMain.on('pat', (event, pat) => {
     AUTH_SERVICE.pat = pat;
   });
+
+  removeToggleDevToolsMenuItem();
 
   createWindow();
 });

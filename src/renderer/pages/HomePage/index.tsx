@@ -108,7 +108,10 @@ export default function HomePage(): ReactElement {
             options={nodes}
             optionType="button"
             value={stateNode}
-            onChange={e => setStateNode(e.target.value)}
+            onChange={e => {
+              setStateNode(e.target.value);
+              setStatePage(1);
+            }}
           />
           {topicListPagination}
           <List
