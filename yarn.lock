@@ -234,6 +234,23 @@
   dependencies:
     "@electron-forge/shared-types" "6.4.2"
 
+"@electron-forge/publisher-base@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@electron-forge/publisher-base/-/publisher-base-7.1.0.tgz#9e0116dc53be96bebac58b43eb379da68a7d8bef"
+  integrity sha512-CsYeWGK7Pu+9E44e95AvQa79VI4/ECdK9Ptw+Y9zVTGA+wuuhf65aOLvhpu3mQuMjpFovdrIjls3pSWzxTquOA==
+  dependencies:
+    "@electron-forge/shared-types" "7.1.0"
+
+"@electron-forge/publisher-bitbucket@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@electron-forge/publisher-bitbucket/-/publisher-bitbucket-7.1.0.tgz#90eaeaec35d2062413bff37655ad4345e4579a05"
+  integrity sha512-x/xxvzM7whF6KRS0loobWw0vq2eAnZuwi0+fLptQgm7p2HwchiPdLHn2TOqTso4gGF858l6ZyivYq6VqqqZU0w==
+  dependencies:
+    "@electron-forge/publisher-base" "7.1.0"
+    form-data "^4.0.0"
+    fs-extra "^10.0.0"
+    node-fetch "^2.6.7"
+
 "@electron-forge/shared-types@6.4.2":
   version "6.4.2"
   resolved "https://registry.yarnpkg.com/@electron-forge/shared-types/-/shared-types-6.4.2.tgz#ffc25a21d1bc7e6cb8fcf8dc1e1767c6a8c52d02"

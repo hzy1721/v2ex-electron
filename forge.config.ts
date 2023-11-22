@@ -40,6 +40,17 @@ const config: ForgeConfig = {
       },
     },
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-bitbucket',
+      config: {
+        repository: {
+          owner: 'hzy1721',
+          name: 'v2ex-electron',
+        },
+      },
+    },
+  ],
   plugins: [
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({
