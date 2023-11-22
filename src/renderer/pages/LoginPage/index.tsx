@@ -1,9 +1,20 @@
 import { useLocalStorage } from '@uidotdev/usehooks';
-import { Button, Card, Flex, Form, Input, message } from 'antd';
+import {
+  Button,
+  Card,
+  Flex,
+  Form,
+  Input,
+  Space,
+  Tooltip,
+  message,
+} from 'antd';
 import { ReactElement, useState } from 'react';
 import { errorPrompt } from '../../utils';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 export default function LoginPage(): ReactElement {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [statePat, setStatePat] = useLocalStorage<string>('pat');
   const [stateLoginLoading, setStateLoginLoading] = useState(false);
 
@@ -50,13 +61,21 @@ export default function LoginPage(): ReactElement {
             <Input />
           </Form.Item>
           <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              loading={stateLoginLoading}
-            >
-              登录
-            </Button>
+            <Space>
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={stateLoginLoading}
+              >
+                登录
+              </Button>
+              <Tooltip
+                title="长时间无响应请尝试开启全局代理"
+                placement="right"
+              >
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </Space>
           </Form.Item>
         </Form>
       </Card>
